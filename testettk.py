@@ -276,11 +276,10 @@ class Plato_App(customtkinter.CTk):
                 self.aviso_carregado.configure(text=f'Aguarde enquanto carregamos seus artigos... \n ATENÇÃO: Isso pode demorar alguns minutos.\n Tempo Estimado{tempo_estimado}')
                 self.update_idletasks()
                 parsifal_to_zotero_2.enviar_artigos(aceitos, caminho, self.url_ativa, self.key_ativa, self.add_artigo)
-                self.aviso_carregado.configure(text="CONCLUÍDO")
-        
-        thread = th.Thread(target=carregar_arquivo)
+                self.aviso_carregado.configure(text="CONCLUÍDO")        
 
         def carregar_arquivo_th():
+            thread = th.Thread(target=carregar_arquivo)
             thread.start()
 
         self.button_carregar = customtkinter.CTkButton(self.frame_area_arquivo, text="Carregar Arquivo", command=carregar_arquivo_th, fg_color="#FBBF24", text_color="#000000")
