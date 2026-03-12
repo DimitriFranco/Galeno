@@ -3,6 +3,7 @@ import customtkinter
 from tkinter import filedialog
 from PIL import Image
 import parsifal_to_zotero_2
+import threading as th
 
 
 def alerta_filtragem(janela_pai):
@@ -260,6 +261,7 @@ class Plato_App(customtkinter.CTk):
         self.texto_carregar = customtkinter.CTkLabel(self.frame_area_arquivo, text="Selecione um arquivo CSV para ser carregado e executado.")
         self.texto_carregar.grid(row=1, column=0, pady=(10, 20))
 
+
         def carregar_arquivo():
             caminho = filedialog.askopenfilename(title="Selecionar arquivo CSV", filetypes=[("Arquivos CSV", "*.csv")])
             if caminho:
@@ -275,15 +277,20 @@ class Plato_App(customtkinter.CTk):
                 self.update_idletasks()
                 parsifal_to_zotero_2.enviar_artigos(aceitos, caminho, self.url_ativa, self.key_ativa, self.add_artigo)
                 self.aviso_carregado.configure(text="CONCLUÍDO")
+        
+        thread = th.Thread(target=carregar_arquivo)
 
-        self.button_carregar = customtkinter.CTkButton(self.frame_area_arquivo, text="Carregar Arquivo", command=carregar_arquivo, fg_color="#FBBF24", text_color="#000000")
+        def carregar_arquivo_th():
+            thread.start()
+
+        self.button_carregar = customtkinter.CTkButton(self.frame_area_arquivo, text="Carregar Arquivo", command=carregar_arquivo_th, fg_color="#FBBF24", text_color="#000000")
         self.button_carregar.grid(row=2, column=0, pady=(0, 70))
         #----------------------CARREGAR O ARQUIVO--------------------------------------------------------
         
         self.frame_aviso_carregado = customtkinter.CTkFrame(self.frame_area_arquivo, fg_color="#1D1D1D")
         self.frame_aviso_carregado.place(relx=0, rely=0, relwidth=1, relheight=1)
         self.frame_aviso_carregado.lower()
-        tempo_estimado = "Carregando..."
+        #tempo_estimado = "Carregando..."
         self.aviso_carregado = customtkinter.CTkLabel(self.frame_aviso_carregado, text=f'Aguarde enquanto carregamos seus artigos... \n ATENÇÃO: Isso pode demorar alguns minutos.')
         self.aviso_carregado.place(relx=0.5, rely=0.5, anchor="center")
 
