@@ -4,6 +4,17 @@ from tkinter import filedialog
 from PIL import Image
 import parsifal_to_zotero_2
 import threading as th
+import sys
+import os
+
+
+def resource_path(relative_path):
+    try:
+        base_path = sys._MEIPASS
+    except Exception:
+        base_path = os.path.abspath(".")
+
+    return os.path.join(base_path, relative_path)
 
 
 def alerta_filtragem(janela_pai):
@@ -175,7 +186,9 @@ class Plato_App(customtkinter.CTk):
         self.frame_top_menu.grid(row=0, column=0, padx=0, pady=0, sticky="new", columnspan=2)
         self.frame_top_menu.columnconfigure(3, weight=1)
 
-        self.img_logo = customtkinter.CTkImage(light_image=Image.open("galeno_icon.png"), size=(40, 40))
+        caminho_img_galeno = resource_path("galeno_icon.png")
+        self.img_logo = customtkinter.CTkImage(light_image=Image.open(caminho_img_galeno), size=(40, 40))
+        #self.img_logo = customtkinter.CTkImage(light_image=Image.open("galeno_icon.png"), size=(40, 40))
         self.label_logo = customtkinter.CTkLabel(self.frame_top_menu, text="", image=self.img_logo)
         self.label_logo.grid(row=0, column=0, padx=(20, 0), pady=20)
 
@@ -233,8 +246,12 @@ class Plato_App(customtkinter.CTk):
         self.frame_conexao = customtkinter.CTkFrame(self.frame_zotero_login, fg_color="transparent")
         self.frame_conexao.grid(row=4, column=0, padx=20, pady=(0,10), sticky="w")
 
-        self.conectado_icon = customtkinter.CTkImage(light_image=Image.open("conectado.png"), size=(20,20))
-        self.desconectado_icon = customtkinter.CTkImage(light_image=Image.open("desconectado.png"), size=(15, 15))
+        caminho_img_conec = resource_path("conectado.png")
+        self.conectado_icon = customtkinter.CTkImage(light_image=Image.open(caminho_img_conec), size=(20,20))
+        #self.conectado_icon = customtkinter.CTkImage(light_image=Image.open("conectado.png"), size=(20,20))
+        caminho_img_desconec = resource_path("desconectado.png")
+        self.desconectado_icon = customtkinter.CTkImage(light_image=Image.open(caminho_img_desconec), size=(15, 15))
+        #self.desconectado_icon = customtkinter.CTkImage(light_image=Image.open("desconectado.png"), size=(15, 15))
         self.conexao_bola = customtkinter.CTkLabel(self.frame_conexao, text="", image=self.desconectado_icon)
         self.conexao_bola.grid(row=0, column=0, padx=15)
 
@@ -254,7 +271,9 @@ class Plato_App(customtkinter.CTk):
         self.frame_area_arquivo.grid(row=1, column=0, padx=70, pady=(0, 20), sticky="nsew")
         self.frame_area_arquivo.grid_columnconfigure(0, weight=1)
 
-        self.img_carregar = customtkinter.CTkImage(light_image=Image.open("carregar_icon.png"), size=(50,50))
+        caminho_img_carreg = resource_path("carregar_icon.png")
+        self.img_carregar = customtkinter.CTkImage(light_image=Image.open(caminho_img_carreg), size=(50,50))
+        #self.img_carregar = customtkinter.CTkImage(light_image=Image.open("carregar_icon.png"), size=(50,50))
         self.label_img_carregar = customtkinter.CTkLabel(self.frame_area_arquivo, text="", image=self.img_carregar)
         self.label_img_carregar.grid(row=0, column=0, pady=(70, 0))
 
