@@ -22,7 +22,7 @@ Para começar a utilizar a ferramenta ou entender melhor o seu funcionamento, ac
 | Recurso | Descrição | Link |
 | :--- | :--- | :--- |
 | 🎥 *Tutorial em Vídeo* | Assista ao passo a passo explicativo da ferramenta. | [Ver Vídeo](https://www.google.com/search?q=https://link-do-seu-video.com) |
-| 💾 *Download* | Baixe a versão mais recente do executável (.exe). | [Baixar Agora](https://www.google.com/search?q=https://link-do-seu-executavel.com) |
+| 💾 *Download* | Baixe a versão mais recente do executável (.exe). | [Baixar Agora](https://drive.google.com/file/d/11VY95loIAPlJ0o5jGSJsZLBX8d2Cjh9U/view?usp=sharing) |
 
 -----
 
